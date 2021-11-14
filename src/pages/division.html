@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<script src="../JS/main.js" type="text/javascript"></script>
+<body onload="pageOnload('title')">
+    <p class="title-content text-center" id="title"></p>
+    <div class="div-center">
+        <button id="btn-go" class="waves-effect waves-light btn text blue lighten-3" onclick="go()" style="margin-bottom: 2rem; margin-left: 16rem;"><i class="material-icons left">check</i>DIVIDIR</button>
+        <label id="resultado" class="text-result color-dark" type="text" style="    margin-left: 6rem;"></label>
+    </div>
+    <div id="inputs-calc" class="div-center" style="flex-direction: row;"></div>
+    <div id="result-calc" class="div-center" style="flex-direction: row;"></div>
+    <div id="log" class="div-center log-error fs16">
+        <i class="log-ok material-icons title-content text-center center">check</i>
+    </div>
+    <div class="fixed-action-btn">
+        <button id="btn-reload" style="display: none;" class="waves-effect waves-light btn-floating btn-large blue lighten-3 tooltipped" data-position="left" data-tooltip="AÑADIR CAMPO" onclick="reload()">
+            <i class="large material-icons">cached</i>
+          </button>
+    </div>
+</body>
+<script>
+    var inputs_calc=document.getElementById('inputs-calc');
+    var result_calc=document.getElementById('result-calc');
+    var resultado=document.getElementById('resultado');
+    var btn_go=document.getElementById('btn-go');
+    var btn_reload=document.getElementById('btn-reload');
+
+    let divider='<label class="divider"></label>';
+    let fr='';
+
+    function go(){
+        let contentInput=inputs_calc.getElementsByTagName('input');
+        let listInputs=[];
+        let label='';
+        let data=0;
+        for(var i =0; i<=contentInput.length-1; i++){
+            listInputs.push(contentInput[i].value);
+            label=`<label class="text-result color-dark input-division" type="text" style="margin: 0.5rem 2rem 0 0rem !important;">${listInputs[0]}</label><div class="casita"><label class="text-result color-dark input-division" type="text">${listInputs[1]}</label></div>`;
+
+            data=parseFloat(listInputs[0])/parseFloat(listInputs[1]);
+           
+            var regNumbers = /^[0-9]+$/;
+            
+            if(i==contentInput.length-1){
+                hide(inputs_calc);
+                hide(btn_go);
+                showBlock(btn_reload);
+                result_calc.innerHTML=label;
+                if(!data){
+                    resultado.innerHTML='INDETERMINADO';
+                }else{
+                    resultado.innerHTML=data.toFixed(2);
+                }
+                showBlock(resultado);
+            }            
+        }
+    }
+
+    function reload(){
+        let input='<input id="input_0" style="margin: 0.5rem 2rem 0 0rem !important;" class="valid-input right-text input-division" onchange="validInputNumber(0)" type="text" name="num" minlength="4" maxlength="8" size="10" value="0"><div class="casita"><input id="input_1" class="valid-input right-text input-division" onchange="validInputNumber(1)" type="text" name="num" minlength="4" maxlength="8" size="10" value="0"></div>';
+        inputs_calc.innerHTML=input;
+        cleanTag(result_calc);
+        cleanTag(resultado);
+        hide(btn_reload);
+        hide(resultado);
+        showFlex(inputs_calc);
+        showFlex(btn_go);
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        reload();
+    });
+</script>

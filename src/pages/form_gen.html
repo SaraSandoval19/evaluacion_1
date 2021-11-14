@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<script src="../JS/main.js" type="text/javascript"></script>
+<body onload="pageOnload('title')">
+    <p class="title-content text-center" id="title"></p>
+    <div class="div-center">
+        <figure>
+            <img src="http://3.bp.blogspot.com/--CsZmuV_vJ8/UINBbVfV9aI/AAAAAAAABZs/Ql0jDlgn-qg/s1600/FormulaGeneral.png">
+        </figure>
+    </div>
+    <div id="inputs-calc" class="div-center" style="flex-direction: row; padding-top: 4% !important;">
+        <p class="text-result color-dark input-division" type="text" style="margin: -1.5rem 1rem 0 0rem !important;">a:</p>
+        <input id="input_0" class="valid-input right-text" onchange="validInputNumber(0)" type="text" name="num" minlength="4" maxlength="8" size="10" value="0" style="margin-right: 3rem !important;">
+        <p class="text-result color-dark input-division" type="text" style="margin: -1.5rem 1rem 0 0rem !important;">b:</p>
+        <input id="input_1" class="valid-input right-text" onchange="validInputNumber(1)" type="text" name="num" minlength="4" maxlength="8" size="10" value="0" style="margin-right: 3rem !important;">
+        <p class="text-result color-dark input-division" type="text" style="margin: -1.5rem 1rem 0 0rem !important;">c:</p>
+        <input id="input_2" class="valid-input right-text" onchange="validInputNumber(2)" type="text" name="num" minlength="4" maxlength="8" size="10" value="0">
+    </div>
+    <div class="div-center">
+        <button id="btn-go" class="waves-effect waves-light btn text blue lighten-3" onclick="go()" style="margin-top: 3rem;"><i class="material-icons left">check</i>CALCULAR</button>
+    </div>
+    <div id="log" class="div-center log-error fs16">
+        <i class="log-ok material-icons title-content text-center center">check</i>
+    </div>
+    <div class="fixed-action-btn">
+        <button id="btn-reload" style="display: none;" class="waves-effect waves-light btn-floating btn-large blue lighten-3 tooltipped" data-position="left" data-tooltip="AÑADIR CAMPO" onclick="reload()">
+            <i class="large material-icons">cached</i>
+          </button>
+    </div>
+</body>
+<script>
+    
+    
+    function go(){
+        var a = document.getElementById('input_0').value;
+        var b = document.getElementById('input_1').value;
+        var c = document.getElementById('input_2').value;
+        
+        a = parseFloat(a); b = parseFloat(b); c = parseFloat(c);
+
+        var x1 = document.getElementById('x1');
+        var x2 = document.getElementById('x2');
+        
+        console.log(a);
+        console.log(b);
+        console.log(c);
+
+		var result=0;
+		var x1;
+		var x2;
+
+		if (isNaN(a && b && c)) {
+			console.log('ingrese solo numero');
+		}
+		if (a !=0 && b!=0 && c!=0) {
+			result = b*b-4*a*c;
+			
+				if (result>=0) {
+					x1 = (-b + Math.sqrt(result)) / (2 * a);
+					x2 = (-b - Math.sqrt(result)) / (2 * a);
+					x1.value=x1;
+					x2.value=x2;
+				}else{
+                    console.log('El valor es negativo');
+				}
+			
+		}else{
+            console.log('Ingrese un numero mayor a cero');
+		}
+	}
+</script>
