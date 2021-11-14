@@ -2,7 +2,11 @@
 Menú de operaciones matemáticas
 ---
 
-## Presentación
+## Propósito
+
+Se necesita un sitio en el cual podamos agrupar las operaciones matemáticas básicas, donde podamos realizar operaciones de manera rpáida y directa.
+
+## Presentación 
 
 Se trata de una página web responsiva, desarrollada con los elementos básicos de HTML, CSS y JavaScript para el correcto funcionamiento de la misma.
 Debido a que no está pensada para usarse en un servidor local o en la web, su uso está limitado al manejo del DOM con JavaScript.

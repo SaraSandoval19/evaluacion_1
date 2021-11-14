@@ -23,6 +23,12 @@ input:focus{
 	box-shadow: 0 0px 0 0 #26a69a !important;
 }
 
+#btn-reload{
+  position: fixed !important;
+  right: 5% !important;
+  bottom: 36% !important;
+}
+
 .text-result{
 	font-size: 2rem !important;
   	width: 12rem !important;

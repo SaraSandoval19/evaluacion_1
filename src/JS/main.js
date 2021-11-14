@@ -188,11 +188,3 @@ function validInputNumber(id){
         return false;
     }
 }
-
-var go={
-    suma: function(){
-
-    },
-    resta: function(){
-    }
-}
