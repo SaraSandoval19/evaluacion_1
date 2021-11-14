@@ -16,55 +16,51 @@
         <input id="input_2" class="valid-input right-text" onchange="validInputNumber(2)" type="text" name="num" minlength="4" maxlength="8" size="10" value="0">
     </div>
     <div class="div-center">
+        <label id="resultado" style="width: 50rem !important; text-align: center;" class="text-result color-dark" type="text">aqui</label>
+    </div>
+    <div class="div-center">
         <button id="btn-go" class="waves-effect waves-light btn text blue lighten-3" onclick="go()" style="margin-top: 3rem;"><i class="material-icons left">check</i>CALCULAR</button>
     </div>
     <div id="log" class="div-center log-error fs16">
         <i class="log-ok material-icons title-content text-center center">check</i>
     </div>
-    <div class="fixed-action-btn">
-        <button id="btn-reload" style="display: none;" class="waves-effect waves-light btn-floating btn-large blue lighten-3 tooltipped" data-position="left" data-tooltip="AÑADIR CAMPO" onclick="reload()">
-            <i class="large material-icons">cached</i>
-          </button>
-    </div>
+    <button id="btn-reload" style="display: none; bottom: 20% !important;" class="waves-effect waves-light btn-floating btn-large blue lighten-3 tooltipped" data-position="left" data-tooltip="AÑADIR CAMPO" onclick="reload()">
+        <i class="large material-icons">cached</i>
+    </button>
 </body>
 <script>
-    
     
     function go(){
         var a = document.getElementById('input_0').value;
         var b = document.getElementById('input_1').value;
         var c = document.getElementById('input_2').value;
         
-        a = parseFloat(a); b = parseFloat(b); c = parseFloat(c);
+        a = parseInt(a); b = parseInt(b); c = parseInt(c);
 
-        var x1 = document.getElementById('x1');
-        var x2 = document.getElementById('x2');
-        
-        console.log(a);
-        console.log(b);
-        console.log(c);
+		function x1 (a, b, c){
+            return (((-1)*b)-(Math.sqrt(Math.pow (b,2))-(4*a*c)))/(2*a);
+        }
+        function x2(a, b, c){
+            return (((-1)*b)-(Math.sqrt(Math.pow (b,2))-(4*a*c)))/(2*a);
+        }
+        var res_x1 = x1(a, b, c);
+        var res_x2 = x2(a, b, c);
 
-		var result=0;
-		var x1;
-		var x2;
-
-		if (isNaN(a && b && c)) {
-			console.log('ingrese solo numero');
-		}
-		if (a !=0 && b!=0 && c!=0) {
-			result = b*b-4*a*c;
-			
-				if (result>=0) {
-					x1 = (-b + Math.sqrt(result)) / (2 * a);
-					x2 = (-b - Math.sqrt(result)) / (2 * a);
-					x1.value=x1;
-					x2.value=x2;
-				}else{
-                    console.log('El valor es negativo');
-				}
-			
-		}else{
-            console.log('Ingrese un numero mayor a cero');
-		}
+        resultado.innerHTML="X1 = "+res_x1+" │ X2 = "+res_x2+"";
+        showBlock(resultado);
+        var btn_reload=document.getElementById('btn-reload');
+        showBlock(btn_reload);
 	}
+    function reload(){
+        var a = document.getElementById('input_0').value=0;
+        var b = document.getElementById('input_1').value=0;
+        var c = document.getElementById('input_2').value=0;
+        var btn_reload=document.getElementById('btn-reload');
+        hide(btn_reload);
+        hide(resultado);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        reload();
+    });
+
 </script>
